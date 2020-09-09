@@ -18,9 +18,23 @@ export const listPrototype = {
     console.log(this.state.name);
   },
   render: function () {
-    const buttonEl = document.createElement('button');
-    buttonEl.innerHTML = this.state.name;
-    buttonEl.addEventListener('click', this.printState.bind(this));
-    return buttonEl;
+    const div = document.createElement("div");
+    div.id = "warpper";
+    const divh3 = document.createElement("h3");
+    divh3.innerHTML = this.state.name;
+    const buttonEl = document.createElement("button");
+    buttonEl.innerHTML = "Add List";
+    buttonEl.id = "add";
+    buttonEl.addEventListener("click", this.printState.bind(this));
+    const todosIN = document.createElement("input");
+    todosIN.type = "text";
+    todosIN.placeholder = "what is next?";
+    const todosUl = document.createElement("ul");
+
+    div.appendChild(todosUl);
+    div.appendChild(divh3);
+    div.appendChild(todosIN);
+    div.appendChild(buttonEl);
+    return div;
   }
 };

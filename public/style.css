@@ -1,0 +1,57 @@
+body {
+  
+  min-height: 450px;
+  height: 100vh;
+  margin: 0;
+  background: radial-gradient(ellipse farthest-corner at center top, #f39264 0%, #f2606f 100%);
+  color: #fff;
+  font-family: 'Nunito', serif;
+ 
+}
+#user-interface{
+   border-radius: 10px;
+    padding: 15px;
+    margin: 0 auto; 
+}
+#lists{
+ 
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: left;
+    padding-top: 10px;
+    
+}
+
+#warpper {
+   
+  position: relative;
+  z-index: 9;
+  top: 60px;
+  width: 300px;
+   color: white;
+   box-sizing: border-box;
+   background: rgba(0, 0, 0, 0.8);
+   border-radius: 10px;
+   padding: 1rem;
+   margin: 1rem;
+ 
+
+}
+ #warpper button{
+  position: relative;
+  left:2%;
+  outline: none;
+   background-color: #f4f5f6;
+    border-radius: 40px;
+  border: 4px solid #888888;
+  padding: 10px;
+  transition: 0.13s ease-in-out;
+  cursor: pointer;
+  text-align: center;
+}
+
+h1{
+ font-style: oblique;
+}

@@ -9,6 +9,11 @@ export const createNewListHandler = (event) => {
   if (event.keyCode !== 13) {
     return;
   }
+if (event.target.value === '') {
+alert('Please Enter A Todo list!');   // Optional (Gelila)
+return;
+  
+}
 
   const newList = Object.create(listPrototype);
   newList.state = {
@@ -27,5 +32,5 @@ export const createNewListHandler = (event) => {
     newList,
     renderedNewList
   });
-
+ event.target.value ='';
 };
