@@ -51,6 +51,7 @@ export const listPrototype = {
         "<input class= 'checkbox' type = 'checkbox' onclick = 'handlers.toggleCompleted()'>" +
         todo.text +
         "</input>";
+
       //delete button
       var deleteButton = document.createElement("button");
       deleteButton.innerHTML = "X";
@@ -76,6 +77,7 @@ export const listPrototype = {
     debugger;
 
     const uniqueInputId = `${this.state.name}newToDo`;
+
     let newToDo = document.getElementById(uniqueInputId).value;
 
     if (newToDo === "") {
