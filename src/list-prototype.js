@@ -52,6 +52,16 @@ export const listPrototype = {
         todo.text +
         "</input>";
 
+      //delete button
+      var deleteButton = document.createElement("button");
+      deleteButton.innerHTML = "X";
+      deleteButton.className = "destroy";
+      todoLi.appendChild(deleteButton);
+      deleteButton.addEventListener(
+        "click",
+        this.deleteTodos.bind(this, position)
+      );
+
       if (todo.completed) {
         let checkBoxEl = todoLi.children[0];
         checkBoxEl.setAttribute("checked", true);
@@ -67,7 +77,8 @@ export const listPrototype = {
     debugger;
 
     const uniqueInputId = `${this.state.name}newToDo`;
-    var newToDo = document.getElementById(uniqueInputId).value;
+
+    let newToDo = document.getElementById(uniqueInputId).value;
 
     if (newToDo === "") {
       alert("Please write a Todo!");
@@ -81,6 +92,20 @@ export const listPrototype = {
     document.getElementById(uniqueInputId).value = "";
     logger.push({
       action: "Add Todo",
+      stateName: this.state.name,
+      state: this.state,
+    });
+  },
+
+  deleteTodos: function (position) {
+    debugger;
+
+    this.state.todos.splice(position, 1);
+
+    this.displayTodos();
+
+    logger.push({
+      action: "Delete Todo",
       stateName: this.state.name,
       state: this.state,
     });

@@ -4,7 +4,7 @@ import { listPrototype } from "../list-prototype.js";
 import { logger } from "../../lib/logger.js";
 
 export const createNewListHandler = (event) => {
-  debugger;
+
   // Number 13 is the "Enter" key on the keyboard
   if (event.keyCode !== 13) {
     return;
