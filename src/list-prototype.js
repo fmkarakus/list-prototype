@@ -1,4 +1,5 @@
 "use strict";
+import { logger } from '../lib/logger.js';
 
 /* List Prototype
 
@@ -12,6 +13,7 @@
   You will need to use binding (or arrow functions) to connect handlers to views
 
 */
+
 
 export const listPrototype = {
   printState: function () {

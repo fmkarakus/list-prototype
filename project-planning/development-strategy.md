@@ -10,7 +10,7 @@ The aim of the project is to build an app that can create and manage lists. In o
 
 ## User Story Dependencies
 
-[Story Dependency Diagram](https://excalidraw.com/)
+![Story Dependency Diagram](./story-dependencies.png)
 
 ---
 
