@@ -37,7 +37,8 @@ export const listPrototype = {
 
     //Toggle All button
     const buttonAll = document.createElement('button');
-    buttonAll.innerHTML = 'Check All';
+    buttonAll.innerHTML =
+      '<i class="fa fa-angle-double-down" style="font-size:15px"></i>';
     buttonAll.style.float = 'right';
     div.appendChild(buttonAll);
 

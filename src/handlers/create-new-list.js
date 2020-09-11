@@ -13,7 +13,7 @@ export const createNewListHandler = (event) => {
     alert("Please Enter A Todo list!"); // Optional (Gelila)
     return;
   }
-
+   document.body.style = "backdrop-filter: blur(2px) ;";
   const newList = Object.create(listPrototype);
   newList.state = {
     name: event.target.value,

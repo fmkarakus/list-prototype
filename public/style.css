@@ -3,7 +3,11 @@ body {
   min-height: 450px;
   height: 100vh;
   margin: 0;
-  background: radial-gradient(ellipse farthest-corner at center top, #f39264 0%, #f2606f 100%);
+  background-image: url('https://images.pexels.com/photos/4066131/pexels-photo-4066131.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-color:rgba(0, 0, 0, 0.5);;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   color: #fff;
   font-family: 'Nunito', serif;
  
@@ -56,14 +60,17 @@ body {
 }
 
 h1{
- font-style: oblique;
+ 
+ color: rgb(214, 212, 214);
+ font-size: 50px;
+ font-weight: 900;
 }
 
 
 .checkbox {
   color: #aaa;
   text-decoration: line-through;
-  
+}
 .btn {
   background-color: rgba(255, 255, 255, 0);
   border: none;
@@ -78,3 +85,22 @@ background-color: rgba(255, 255, 255, 0.74);
 li{
   list-style: none;
 }
+#list-name-input{
+   position: relative;
+    margin: 0;
+    width: 300px;
+    font-size: 24px;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: 1.4em;
+    border: none;
+    color: gray;
+    padding: 6px;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+}
+
+
+   
