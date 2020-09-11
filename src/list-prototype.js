@@ -1,4 +1,5 @@
 "use strict";
+import { logger } from "../../lib/logger.js";
 
 /* List Prototype
 
@@ -18,8 +19,18 @@ export const listPrototype = {
     console.log(this.state.name);
   },
   render: function () {
+     
     const div = document.createElement("div");
     div.id = "warpper";
+    const button = document.createElement('button');
+    button.id='remove';
+    button.innerHTML = '<i class="fa fa-close"></i>';
+    button.style.float = 'right';
+    button.addEventListener('click',function remove() {
+     var b = this;
+      b.parentNode.remove(); 
+    })
+    div.appendChild(button);
     const divh3 = document.createElement("h3");
     divh3.innerHTML = this.state.name;
     const buttonEl = document.createElement("button");
@@ -41,7 +52,7 @@ export const listPrototype = {
   },
 
   displayTodos: function () {
-    debugger;
+   
     var todosUl = document.getElementById(`${this.state.name}ul`);
     todosUl.innerHTML = "";
     this.state.todos.forEach(function (todo, position) {
@@ -54,8 +65,8 @@ export const listPrototype = {
 
       //delete button
       var deleteButton = document.createElement("button");
-      deleteButton.innerHTML = "X";
-      deleteButton.className = "destroy";
+      deleteButton.innerHTML='<i class="fa fa-trash"></i>';
+      deleteButton.className = "btn";
       todoLi.appendChild(deleteButton);
       deleteButton.addEventListener(
         "click",

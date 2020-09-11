@@ -39,7 +39,7 @@ body {
  
 
 }
- #warpper button{
+ #add{
   position: relative;
   left:2%;
   outline: none;
@@ -54,4 +54,18 @@ body {
 
 h1{
  font-style: oblique;
+}
+.btn {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  color: white;
+  padding: 7px 7px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.btn:hover{
+background-color: rgba(255, 255, 255, 0.74);  
+}
+li{
+  list-style: none;
 }
