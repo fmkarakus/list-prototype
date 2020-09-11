@@ -1,5 +1,5 @@
 "use strict";
-import { logger } from "../../lib/logger.js";
+//import { logger } from "../../lib/logger.js";
 
 /* List Prototype
 
@@ -27,8 +27,7 @@ export const listPrototype = {
     button.innerHTML = '<i class="fa fa-close"></i>';
     button.style.float = 'right';
     button.addEventListener('click',function remove() {
-     var b = this;
-      b.parentNode.remove(); 
+     this.parentNode.remove(); 
     })
     div.appendChild(button);
     const divh3 = document.createElement("h3");
