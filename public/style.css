@@ -24,7 +24,7 @@ body {
     
 }
 
-#warpper {
+.warper {
    
   position: relative;
   z-index: 9;
@@ -39,6 +39,9 @@ body {
  
 
 }
+
+ 
+
  #add{
   position: relative;
   left:2%;
@@ -55,6 +58,12 @@ body {
 h1{
  font-style: oblique;
 }
+
+
+.checkbox {
+  color: #aaa;
+  text-decoration: line-through;
+  
 .btn {
   background-color: rgba(255, 255, 255, 0);
   border: none;

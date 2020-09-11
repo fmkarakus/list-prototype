@@ -1,5 +1,7 @@
 "use strict";
+
 //import { logger } from "../../lib/logger.js";
+
 
 /* List Prototype
 
@@ -21,6 +23,8 @@ export const listPrototype = {
   render: function () {
      
     const div = document.createElement("div");
+
+    div.className = "warper";
     div.id = "warpper";
     const button = document.createElement('button');
     button.id='remove';
@@ -51,18 +55,39 @@ export const listPrototype = {
   },
 
   displayTodos: function () {
+
    
     var todosUl = document.getElementById(`${this.state.name}ul`);
     todosUl.innerHTML = "";
     this.state.todos.forEach(function (todo, position) {
-      var todoLi = document.createElement("li");
+      const todoLi = document.createElement("li");
+      const todoText = document.createTextNode(todo.text);
       todoLi.id = position;
-      todoLi.innerHTML =
-        "<input class= 'checkbox' type = 'checkbox' onclick = 'handlers.toggleCompleted()'>" +
-        todo.text +
-        "</input>";
+      todoLi.appendChild(todoText);
+      
+      const inputEl = document.createElement("input");
+      inputEl.type = 'checkbox';
+      todoLi.insertBefore(inputEl, todoText);
+      
+
+      inputEl.addEventListener(
+        "click",
+        this.toggleTodos.bind(this, position)
+      ); 
+      
+      if (this.state.todos[position].completed) {
+        todoLi.className = 'checkbox';
+        inputEl.checked = true;
+      } else {
+        todoLi.classList.remove('checkbox');
+        inputEl.checked = false
+      }
+
 
       //delete button
+
+      
+
       var deleteButton = document.createElement("button");
       deleteButton.innerHTML='<i class="fa fa-trash"></i>';
       deleteButton.className = "btn";
@@ -71,20 +96,13 @@ export const listPrototype = {
         "click",
         this.deleteTodos.bind(this, position)
       );
-
-      if (todo.completed) {
-        let checkBoxEl = todoLi.children[0];
-        checkBoxEl.setAttribute("checked", true);
-        if (todo.completed === true) {
-          todoLi.className = "checkbox";
-        }
-      }
+      
       todosUl.appendChild(todoLi);
     }, this);
   },
 
   addTodos: function (event) {
-    debugger;
+    //debugger;
 
     const uniqueInputId = `${this.state.name}newToDo`;
 
@@ -98,6 +116,7 @@ export const listPrototype = {
       text: newToDo,
       completed: false,
     });
+    
     this.displayTodos();
     document.getElementById(uniqueInputId).value = "";
     logger.push({
@@ -106,7 +125,24 @@ export const listPrototype = {
       state: this.state,
     });
   },
+  
 
+  toggleTodos: function (position) {
+    debugger
+    if (!this.state.todos[position].completed) {
+      this.state.todos[position].completed = true;
+      this.displayTodos();
+    } else {
+      this.state.todos[position].completed = false;
+      this.displayTodos();
+    }
+    logger.push({
+      action: "Check input",
+      stateName: this.state.todos[position],
+      state: this.state.todos[position].completed,
+    });
+  },
+  
   deleteTodos: function (position) {
     debugger;
 
@@ -120,4 +156,5 @@ export const listPrototype = {
       state: this.state,
     });
   },
+  
 };
