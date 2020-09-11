@@ -24,7 +24,7 @@ body {
     
 }
 
-#warpper {
+.warper {
    
   position: relative;
   z-index: 9;
@@ -39,7 +39,7 @@ body {
  
 
 }
- #warpper button{
+ .warper button{
   position: relative;
   left:2%;
   outline: none;
@@ -54,4 +54,9 @@ body {
 
 h1{
  font-style: oblique;
+}
+
+.checkbox {
+  color: #aaa;
+  text-decoration: line-through;
 }

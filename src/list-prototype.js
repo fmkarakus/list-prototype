@@ -14,14 +14,13 @@ import { logger } from '../lib/logger.js';
 
 */
 
-
 export const listPrototype = {
   printState: function () {
     console.log(this.state.name);
   },
   render: function () {
     const div = document.createElement("div");
-    div.id = "warpper";
+    div.className = "warper";
     const divh3 = document.createElement("h3");
     divh3.innerHTML = this.state.name;
     const buttonEl = document.createElement("button");
@@ -43,40 +42,51 @@ export const listPrototype = {
   },
 
   displayTodos: function () {
-    debugger;
-    var todosUl = document.getElementById(`${this.state.name}ul`);
+    //debugger;
+    const todosUl = document.getElementById(`${this.state.name}ul`);
     todosUl.innerHTML = "";
     this.state.todos.forEach(function (todo, position) {
-      var todoLi = document.createElement("li");
+      const todoLi = document.createElement("li");
+      const todoText = document.createTextNode(todo.text);
       todoLi.id = position;
-      todoLi.innerHTML =
-        "<input class= 'checkbox' type = 'checkbox' onclick = 'handlers.toggleCompleted()'>" +
-        todo.text +
-        "</input>";
+      todoLi.appendChild(todoText);
+      
+      const inputEl = document.createElement("input");
+      inputEl.type = 'checkbox';
+      todoLi.insertBefore(inputEl, todoText);
+      
+
+      inputEl.addEventListener(
+        "click",
+        this.toggleTodos.bind(this, position)
+      ); 
+      
+      if (this.state.todos[position].completed) {
+        todoLi.className = 'checkbox';
+        inputEl.checked = true;
+      } else {
+        todoLi.classList.remove('checkbox');
+        inputEl.checked = false
+      }
+
 
       //delete button
-      var deleteButton = document.createElement("button");
+      let deleteButton = document.createElement("button");
       deleteButton.innerHTML = "X";
       deleteButton.className = "destroy";
+      
       todoLi.appendChild(deleteButton);
       deleteButton.addEventListener(
         "click",
         this.deleteTodos.bind(this, position)
       );
-
-      if (todo.completed) {
-        let checkBoxEl = todoLi.children[0];
-        checkBoxEl.setAttribute("checked", true);
-        if (todo.completed === true) {
-          todoLi.className = "checkbox";
-        }
-      }
+      
       todosUl.appendChild(todoLi);
     }, this);
   },
 
   addTodos: function (event) {
-    debugger;
+    //debugger;
 
     const uniqueInputId = `${this.state.name}newToDo`;
 
@@ -90,6 +100,7 @@ export const listPrototype = {
       text: newToDo,
       completed: false,
     });
+    
     this.displayTodos();
     document.getElementById(uniqueInputId).value = "";
     logger.push({
@@ -98,7 +109,24 @@ export const listPrototype = {
       state: this.state,
     });
   },
+  
 
+  toggleTodos: function (position) {
+    debugger
+    if (!this.state.todos[position].completed) {
+      this.state.todos[position].completed = true;
+      this.displayTodos();
+    } else {
+      this.state.todos[position].completed = false;
+      this.displayTodos();
+    }
+    logger.push({
+      action: "Check input",
+      stateName: this.state.todos[position],
+      state: this.state.todos[position].completed,
+    });
+  },
+  
   deleteTodos: function (position) {
     debugger;
 
@@ -112,4 +140,5 @@ export const listPrototype = {
       state: this.state,
     });
   },
+  
 };
