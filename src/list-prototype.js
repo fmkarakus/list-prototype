@@ -1,6 +1,6 @@
 "use strict";
 
-//import { logger } from "../../lib/logger.js";
+import { logger } from "../../lib/logger.js";
 
 
 /* List Prototype
@@ -34,6 +34,14 @@ export const listPrototype = {
      this.parentNode.remove(); 
     })
     div.appendChild(button);
+
+    //Toggle All button
+    const buttonAll = document.createElement('button');
+    buttonAll.innerHTML = 'Check All';
+    buttonAll.style.float = 'right';
+    div.appendChild(buttonAll);
+
+    buttonAll.addEventListener("click", this.toggleAll.bind(this));
     const divh3 = document.createElement("h3");
     divh3.innerHTML = this.state.name;
     const buttonEl = document.createElement("button");
@@ -56,7 +64,6 @@ export const listPrototype = {
 
   displayTodos: function () {
 
-   
     var todosUl = document.getElementById(`${this.state.name}ul`);
     todosUl.innerHTML = "";
     this.state.todos.forEach(function (todo, position) {
@@ -69,7 +76,6 @@ export const listPrototype = {
       inputEl.type = 'checkbox';
       todoLi.insertBefore(inputEl, todoText);
       
-
       inputEl.addEventListener(
         "click",
         this.toggleTodos.bind(this, position)
@@ -82,11 +88,8 @@ export const listPrototype = {
         todoLi.classList.remove('checkbox');
         inputEl.checked = false
       }
-
-
-      //delete button
-
       
+      //delete button
 
       var deleteButton = document.createElement("button");
       deleteButton.innerHTML='<i class="fa fa-trash"></i>';
@@ -128,7 +131,7 @@ export const listPrototype = {
   
 
   toggleTodos: function (position) {
-    debugger
+    //debugger
     if (!this.state.todos[position].completed) {
       this.state.todos[position].completed = true;
       this.displayTodos();
@@ -143,8 +146,17 @@ export const listPrototype = {
     });
   },
   
+  toggleAll: function () {
+    //debugger
+    const listObj = this.state.todos;
+    for (let i = 0; i < listObj.length; i++ ) {
+      listObj[i].completed = true;
+    }
+    this.displayTodos();
+  },
+  
   deleteTodos: function (position) {
-    debugger;
+    //debugger;
 
     this.state.todos.splice(position, 1);
 
