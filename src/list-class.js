@@ -2,44 +2,37 @@
 
 //import { logger } from "../../lib/logger.js";
 
+export class list {
+  state = {
+    name: "",
+    todos: [],
+  };
 
-/* List Prototype
+  constructor(name) {
+    this.state.name = name;
+  }
 
-  This object will contain all the methods for your many lists
-  in your app you will use Object.create(listPrototype) to create many lists
-  it will include all the functions you need for a list:
-    logic
-    views
-    handlers
-
-  You will need to use binding (or arrow functions) to connect handlers to views
-
-*/
-
-export const listPrototype = {
-  printState: function () {
-    console.log(this.state.name);
-  },
-  render: function () {
-     
+  render() {
+    debugger;
     const div = document.createElement("div");
 
     div.className = "warper";
     div.id = "warpper";
-    const button = document.createElement('button');
-    button.id='remove';
+    const button = document.createElement("button");
+    button.id = "remove";
     button.innerHTML = '<i class="fa fa-close"></i>';
-    button.style.float = 'right';
-    button.addEventListener('click',function remove() {
-     this.parentNode.remove(); 
-    })
+    button.style.float = "right";
+    button.addEventListener("click", function remove() {
+      this.parentNode.remove();
+    });
     div.appendChild(button);
 
     //Toggle All button
-    const buttonAll = document.createElement('button');
+    debugger;
+    const buttonAll = document.createElement("button");
     buttonAll.innerHTML =
       '<i class="fa fa-angle-double-down" style="font-size:15px"></i>';
-    buttonAll.style.float = 'right';
+    buttonAll.style.float = "right";
     div.appendChild(buttonAll);
 
     buttonAll.addEventListener("click", this.toggleAll.bind(this));
@@ -61,10 +54,10 @@ export const listPrototype = {
     div.appendChild(buttonEl);
     div.appendChild(todosUl);
     return div;
-  },
+  }
 
-  displayTodos: function () {
-
+  displayTodos() {
+    debugger;
     var todosUl = document.getElementById(`${this.state.name}ul`);
     todosUl.innerHTML = "";
     this.state.todos.forEach(function (todo, position) {
@@ -72,41 +65,38 @@ export const listPrototype = {
       const todoText = document.createTextNode(todo.text);
       todoLi.id = position;
       todoLi.appendChild(todoText);
-      
+
       const inputEl = document.createElement("input");
-      inputEl.type = 'checkbox';
+      inputEl.type = "checkbox";
       todoLi.insertBefore(inputEl, todoText);
-      
-      inputEl.addEventListener(
-        "click",
-        this.toggleTodos.bind(this, position)
-      ); 
-      
+
+      inputEl.addEventListener("click", this.toggleTodos.bind(this, position));
+
       if (this.state.todos[position].completed) {
-        todoLi.className = 'checkbox';
+        todoLi.className = "checkbox";
         inputEl.checked = true;
       } else {
-        todoLi.classList.remove('checkbox');
-        inputEl.checked = false
+        todoLi.classList.remove("checkbox");
+        inputEl.checked = false;
       }
-      
+
       //delete button
 
       var deleteButton = document.createElement("button");
-      deleteButton.innerHTML='<i class="fa fa-trash"></i>';
+      deleteButton.innerHTML = '<i class="fa fa-trash"></i>';
       deleteButton.className = "btn";
       todoLi.appendChild(deleteButton);
       deleteButton.addEventListener(
         "click",
         this.deleteTodos.bind(this, position)
       );
-      
+
       todosUl.appendChild(todoLi);
     }, this);
-  },
+  }
 
-  addTodos: function (event) {
-    //debugger;
+  addTodos(event) {
+    debugger;
 
     const uniqueInputId = `${this.state.name}newToDo`;
 
@@ -120,7 +110,7 @@ export const listPrototype = {
       text: newToDo,
       completed: false,
     });
-    
+
     this.displayTodos();
     document.getElementById(uniqueInputId).value = "";
     logger.push({
@@ -128,11 +118,10 @@ export const listPrototype = {
       stateName: this.state.name,
       state: this.state,
     });
-  },
-  
+  }
 
-  toggleTodos: function (position) {
-    //debugger
+  toggleTodos(position) {
+    debugger;
     if (!this.state.todos[position].completed) {
       this.state.todos[position].completed = true;
       this.displayTodos();
@@ -145,19 +134,19 @@ export const listPrototype = {
       stateName: this.state.todos[position],
       state: this.state.todos[position].completed,
     });
-  },
-  
-  toggleAll: function () {
-    //debugger
+  }
+
+  toggleAll() {
+    debugger;
     const listObj = this.state.todos;
-    for (let i = 0; i < listObj.length; i++ ) {
+    for (let i = 0; i < listObj.length; i++) {
       listObj[i].completed = true;
     }
     this.displayTodos();
-  },
-  
-  deleteTodos: function (position) {
-    //debugger;
+  }
+
+  deleteTodos(position) {
+    debugger;
 
     this.state.todos.splice(position, 1);
 
@@ -168,6 +157,5 @@ export const listPrototype = {
       stateName: this.state.name,
       state: this.state,
     });
-  },
-  
-};
+  }
+}

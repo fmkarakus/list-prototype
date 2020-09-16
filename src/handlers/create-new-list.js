@@ -1,10 +1,10 @@
 "use strict";
 
-import { listPrototype } from "../list-prototype.js";
+import { list } from "../list-class.js";
 import { logger } from "../../lib/logger.js";
 
 export const createNewListHandler = (event) => {
-
+  debugger;
   // Number 13 is the "Enter" key on the keyboard
   if (event.keyCode !== 13) {
     return;
@@ -13,13 +13,9 @@ export const createNewListHandler = (event) => {
     alert("Please Enter A Todo list!"); // Optional (Gelila)
     return;
   }
-   document.body.style = "backdrop-filter: blur(2px) ;";
-  const newList = Object.create(listPrototype);
-  newList.state = {
-    name: event.target.value,
-    todos: [],
-  };
+  document.body.style = "backdrop-filter: blur(2px) ;";
 
+  const newList = new list(event.target.value);
   const renderedNewList = newList.render();
 
   document.getElementById("lists").appendChild(renderedNewList);
